@@ -28,6 +28,12 @@ class AnimatedChild extends AnimatedWidget {
   final EdgeInsets childMargin;
   final EdgeInsets childPadding;
 
+  final double? width;
+  final double? height;
+
+  final Color? shadowColor;
+  final double? blurRadius;
+
   const AnimatedChild({
     Key? key,
     this.btnKey,
@@ -54,6 +60,10 @@ class AnimatedChild extends AnimatedWidget {
     this.heroTag,
     required this.childMargin,
     required this.childPadding,
+    this.width,
+    this.height,
+    this.shadowColor,
+    this.blurRadius,
   }) : super(key: key, listenable: animation);
 
   @override
@@ -123,17 +133,27 @@ class AnimatedChild extends AnimatedWidget {
 
     Widget button = ScaleTransition(
         scale: animation,
-        child: FloatingActionButton(
-          key: btnKey,
-          heroTag: heroTag,
-          onPressed: performAction,
-          backgroundColor:
-              backgroundColor ?? (dark ? Colors.grey[800] : Colors.grey[50]),
-          foregroundColor:
-              foregroundColor ?? (dark ? Colors.white : Colors.black),
-          elevation: elevation ?? 6.0,
-          shape: shape,
-          child: child,
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor ?? Colors.black.withOpacity(0.4),
+                blurRadius: blurRadius ?? 8.0,
+              ),
+            ],
+          ),
+          child: FloatingActionButton(
+            key: btnKey,
+            heroTag: heroTag,
+            onPressed: performAction,
+            backgroundColor:
+                backgroundColor ?? (dark ? Colors.grey[800] : Colors.grey[50]),
+            foregroundColor:
+                foregroundColor ?? (dark ? Colors.white : Colors.black),
+            elevation: elevation ?? 6.0,
+            shape: shape,
+            child: child,
+          ),
         ));
 
     List<Widget> children = [
@@ -151,8 +171,8 @@ class AnimatedChild extends AnimatedWidget {
       if (child != null)
         Container(
           padding: childPadding,
-          height: buttonSize.height,
-          width: buttonSize.width,
+          height: height,
+          width: width,
           child: (onLongPress == null)
               ? button
               : FittedBox(

@@ -26,10 +26,6 @@ class _MyAppState extends State<MyApp> {
                 brightness: Brightness.light,
                 primaryColor: Colors.blue,
               ),
-              darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                primaryColor: Colors.lightBlue[900],
-              ),
               themeMode: value,
             ));
   }
@@ -467,6 +463,21 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               label: 'First',
               onTap: () => setState(() => rmicons = !rmicons),
               onLongPress: () => debugPrint('FIRST CHILD LONG PRESS'),
+            ),
+            SpeedDialChild(
+              width: 200,
+              backgroundColor: Colors.green,
+              blurRadius: 20,
+              shadowColor: Color.fromARGB(255, 174, 10, 10),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  'Create Request',
+                ),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             SpeedDialChild(
               child: !rmicons ? const Icon(Icons.brush) : null,

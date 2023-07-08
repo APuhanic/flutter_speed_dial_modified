@@ -530,6 +530,10 @@ class _ChildrensOverlay extends StatelessWidget {
           int index = widget.children.indexOf(child);
 
           return AnimatedChild(
+            width: child.width,
+            height: child.height,
+            blurRadius: child.blurRadius,
+            shadowColor: child.shadowColor,
             animation: Tween(begin: 0.0, end: 1.0).animate(
               CurvedAnimation(
                 parent: controller,

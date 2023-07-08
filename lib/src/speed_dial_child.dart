@@ -45,6 +45,14 @@ class SpeedDialChild {
   /// Whether this `SpeedDialChild` is visible or not
   final bool visible;
 
+  final double? width;
+
+  final double? height;
+
+  final double? blurRadius;
+
+  final Color? shadowColor;
+
   SpeedDialChild({
     this.key,
     this.label,
@@ -60,5 +68,9 @@ class SpeedDialChild {
     this.onTap,
     this.onLongPress,
     this.shape,
+    this.width,
+    this.height,
+    this.blurRadius,
+    this.shadowColor,
   });
 }
